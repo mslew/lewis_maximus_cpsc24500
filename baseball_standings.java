@@ -7,18 +7,26 @@
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.io.*;
-import java.util.Collections;
 
+
+//C:\Users\epicx\Downloads\baseball_standings.txt
 
 public class Baseball {
+	/**
+	 * This function simply prints the welcome screen in a nice header
+	 */
 	public static void welcome() {
 		System.out.print("**************************************************\n");
 		System.out.print("                BASEBALL STANDINGS                \n");
 		System.out.print("**************************************************\n");
 
 	}
+	/**
+	 * This function prints out a menu and grabs the choice from the user
+	 * @param sc scanner grabs the user's choice from the menu
+	 * @return the choice, which is an int 
+	 */
 	public static int menuChoice(Scanner sc) {
 		System.out.print("Which league would you want to see?\n");
 		System.out.print("1. AL East\n");
@@ -33,6 +41,11 @@ public class Baseball {
 		int choice = sc.nextInt();
 		return choice;
 	}
+	/**
+	 * This function takes a line from the various divisions and takes their wins and losses and calculates winning percentage
+	 * @param team line from the various division arraylists
+	 * @return the avg in double
+	 */
 	public static double winningPercentage(String team) {
 		double avg; 
 		double total;
@@ -44,40 +57,56 @@ public class Baseball {
 		avg = wins / total;
 		return avg;
 	}
+	/**
+	 * This functions takes the first team in the division and calculates the games behind for the teams lower than the team in first
+	 * (team in first -  team below) / 2
+	 * @param firstTeamTotal is the team in firsts total games
+	 * @param secondTeamTotal is the team below the team in first total games
+	 * @return the games behind in a double
+	 */
 	public static double gamesBehind(double firstTeamTotal, double secondTeamTotal) {
 		double gamesBehind;
 		gamesBehind = (firstTeamTotal - secondTeamTotal) / 2;
 		return gamesBehind;
 	}
+	/**
+	 * This function takes in a team's wins and losses and subtracts them, used to calculate games behind
+	 * @param team line from the various division files
+	 * @return total in double. which is the wins - losses
+	 */
 	public static double teamSubtracted(String team) {
 		String[] parts;
 		parts = team.split("\t");
 		double total = Double.parseDouble(parts[1]) - Double.parseDouble(parts[2]);
 		return total;
 	}
-	public static ArrayList<String> sortAllTeams(ArrayList<String> list){
-		String[] parts;
-		ArrayList<Double> tempStandings = new ArrayList<Double>();
-		ArrayList<String> correctedStandings = new ArrayList<String>();
-		double winningPercentage;
-		for (String line : list) {
-			parts = line.split("\t");
-			winningPercentage = winningPercentage(line);
-			tempStandings.add(winningPercentage);
-		}
-		Collections.sort(tempStandings, Collections.reverseOrder());
-		for(double num : tempStandings) {
-			for(String line : list) {
-				winningPercentage = winningPercentage(line); // i know this is sloppy since im calling a function each time i go through
-				if (num == winningPercentage) {				 // the list, but i didnt know how else to do it
-					correctedStandings.add(line);
-				}else { 
-					continue;
-				}
+	/**
+	 * This function sorts all the teams by winning percentage 
+	 * @param list the list of all teams, their wins,and losses
+	 * @param line is the one line of the file with team, wins and losses
+	 */
+	public static void sortedByAverage(ArrayList<String> list, String line){
+		double thisPerc = winningPercentage(line);
+		double otherPerc;
+		int pos = -1;
+		for (int i=0; i < list.size(); i++) {
+			otherPerc = winningPercentage(list.get(i));
+			if (thisPerc > otherPerc) {
+				pos = i;
+				break;
 			}
 		}
-		return correctedStandings;
+		if (pos < 0) {
+			list.add(line);
+		}else {
+			list.add(pos, line);
+		}
 	}
+	
+	/**
+	 * This function prints out the standings 
+	 * @param list is the list of teams per division
+	 */
 	public static void printStandings(ArrayList<String> list) {
 		String[] parts;
 		double avg;
@@ -91,12 +120,12 @@ public class Baseball {
 			if (count == 1 ) {
 				avg = winningPercentage(line);
 				firstTeamSubtracted = teamSubtracted(line);
-				System.out.printf("%15s\t%15.3f\t\n",line, avg);
+				System.out.printf("%15s\t%5.3f\t\n",line, avg);
 			}else if (count > 1) {
 				secondTeamSubtracted = teamSubtracted(line);
 				avg = winningPercentage(line);
 				behind = gamesBehind(firstTeamSubtracted, secondTeamSubtracted);
-				System.out.printf("%15s\t%15.3f\t%15.2f\n",line, avg, behind);
+				System.out.printf("%15s\t%5.3f\t%8.2f\n",line, avg, behind);
 			}
 		}
 	}
@@ -140,7 +169,7 @@ public class Baseball {
 						}
 				}else {
 					target.add(line);
-					allTeams.add(line);
+					sortedByAverage(allTeams, line);
 				}
 			}
 			fsc.close();
@@ -153,35 +182,34 @@ public class Baseball {
 			do {
 				choice = menuChoice(sc);
 				if (choice == 1) {
-					System.out.print("AL EAST\n");
-					System.out.print("----------------------------\n");
+					System.out.print("AL EAST        Wins   Losses   Percent   Games Behind\n");
+					System.out.print("--------------------------------------------------------\n");
 					printStandings(alEast);
 				}else if (choice == 2) {
-					System.out.print("AL CENTRAL\n");
-					System.out.print("----------------------------\n");
+					System.out.print("AL CENTRAL     Wins   Losses   Percent   Games Behind\n");
+					System.out.print("--------------------------------------------------------\n");
 					printStandings(alCentral);
 				}else if (choice == 3) {
-					System.out.print("AL WEST\n");
-					System.out.print("----------------------------\n");
+					System.out.print("AL WEST        Wins   Losses   Percent   Games Behind\n");
+					System.out.print("--------------------------------------------------------\n");
 					printStandings(alWest);
 				}else if (choice == 4) {
-					System.out.print("NL EAST\n");
-					System.out.print("----------------------------\n");
+					System.out.print("NL EAST        Wins   Losses   Percent   Games Behind\n");
+					System.out.print("--------------------------------------------------------\n");
 					printStandings(nlEast);
 				}else if (choice == 5) {
-					System.out.print("NL CENTRAL\n");
-					System.out.print("----------------------------\n");
+					System.out.print("NL CENTRAL     Wins   Losses   Percent   Games Behind\n");
+					System.out.print("--------------------------------------------------------\n");
 					printStandings(nlCentral);
 				}else if (choice == 6) {
-					System.out.print("NL WEST\n");
-					System.out.print("----------------------------\n");
+					System.out.print("NL WEST        Wins   Losses   Percent   Games Behind\n");
+					System.out.print("--------------------------------------------------------\n");
 					printStandings(nlWest);
 				}else if (choice == 7) {
-					sortedAllTeams=sortAllTeams(allTeams);
-					System.out.print("Team\tWins\tLosses\n");
+					System.out.print("Team           Wins   Losses\n");
 					System.out.print("----------------------------\n");
-					for(String sortedAllTeamsLine : sortedAllTeams) {
-						System.out.printf("%15s\n", sortedAllTeamsLine);
+					for(String allTeamsLine : allTeams) {
+						System.out.printf("%15s\n", allTeamsLine);
 					}
 				}
 			}while (choice != 8);
