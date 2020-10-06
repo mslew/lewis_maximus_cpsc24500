@@ -82,7 +82,7 @@ public class Baseball {
 	}
 	/**
 	 * This function sorts all the teams by winning percentage 
-	 * @param list the list of all teams, their wins,and losses
+	 * @param list the empty list that I will be adding to 
 	 * @param line is the one line of the file with team, wins and losses
 	 */
 	public static void sortedByAverage(ArrayList<String> list, String line){
