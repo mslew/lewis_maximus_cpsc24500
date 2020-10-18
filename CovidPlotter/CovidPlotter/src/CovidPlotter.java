@@ -13,12 +13,20 @@ import org.math.plot.Plot2DPanel;
 import org.math.plot.plotObjects.BaseLabel;
 
 public class CovidPlotter {
+	/**
+	 * This function simply prints a welcome header
+	 */
 	public static void Welcome(){
 		System.out.print("**************************************\n");
 		System.out.print("INTERNATIONAL COVID-19 MORTALITY RATES\n");
 		System.out.print("**************************************\n");
 
 	}
+	/**
+	 * This function makes a list of nice x values for the graphs
+	 * @param amount the length of the double[] list in the LinkedHashMap
+	 * @return a double[] of x values
+	 */
 	public static double[] getDays(int amount){
 		double[] result = new double [amount];
 		for (int i = 0; i < amount; i++){
@@ -26,6 +34,11 @@ public class CovidPlotter {
 		}
 		return result;
 	}
+	/**
+	 * This function builds the window and displays it
+	 * @param plot the new 2DPanel created down in main
+	 * @param titleGraph a String value of what the graph title should be. "Daily Deaths" or "Cumulative Deaths"
+	 */
 	public static void buildWindow(Plot2DPanel plot, String titleGraph) {
         JFrame frm = new JFrame();
 		frm.setTitle(titleGraph);
@@ -39,6 +52,12 @@ public class CovidPlotter {
 		plot.setAxisLabels("Days", "Deaths");
         frm.setVisible(true);
 	}
+	/**
+	 * This function takes in the text file and reads it. Storing the values
+	 * of each country and their deaths in a <String, double[]> format
+	 * @param fsc the text file
+	 * @return a LinkedHashMap that is <country, deaths>
+	 */
 	public static LinkedHashMap<String, double[]> readFile(Scanner fsc){
 		LinkedHashMap<String, double[]> result = new LinkedHashMap<String, double[]>();
 		String line = fsc.nextLine();
@@ -58,21 +77,29 @@ public class CovidPlotter {
 		}
 		return result;
 	}
+	/**
+	 * This function takes in the LinkedHashMap of cumulative deaths and makes a new LinkedHashMap
+	 * of daily death values
+	 * @param list is the LinkedHashMap of cumulative deaths  
+	 * @return new LinkedHashMap for the daily values in format of <country, deaths>
+	 */
 	public static LinkedHashMap<String, double[]> makeDaily(LinkedHashMap<String, double[]> list){
 		LinkedHashMap<String, double[]> result = new LinkedHashMap<String, double[]>();
-		double[] deaths;
+		double daily;
 		for(String country : list.keySet()){
+			double[] deaths;
 			deaths = list.get(country);
 			int dayCount = deaths.length - 1;
+			double[] newDeaths = new double[dayCount];
 			for (int i = 1; i < dayCount; i++){
-				double daily = deaths[i] - deaths[i-1];
-				if (daily < 0 || daily > 10000){
+				daily = deaths[i] - deaths[i-1];
+				if (daily < 0){
 					continue;
 				}else{
-					deaths[i-1] = daily;
+					newDeaths[i-1] = daily;
 				}
 			}
-			result.put(country,deaths);
+			result.put(country,newDeaths);
 		}
 		return result;
 	}
@@ -89,7 +116,6 @@ public class CovidPlotter {
 		int proceed = 0;
 		LinkedHashMap<String, double[]> countryDeathSet = new LinkedHashMap<String, double[]>();
 		LinkedHashMap<String, double[]> countryDailyDeathSet = new LinkedHashMap<String, double[]>();
-		LinkedHashMap<String, double[]> temp = new LinkedHashMap<String, double[]>();
 		try {
 			Scanner fsc = new Scanner(new File(fname));
 			countryDeathSet = readFile(fsc);
@@ -100,8 +126,7 @@ public class CovidPlotter {
 		if(num == 1){
 			System.out.print("This file cannot be found.\n");
 		}else{
-			temp = countryDeathSet;
-			countryDailyDeathSet = makeDaily(temp);
+			countryDailyDeathSet = makeDaily(countryDeathSet);
 			do{
 				System.out.print("Enter the country(s) you want to see. Seperate countries by commas or quit: \n");
 				country = sc.nextLine();
