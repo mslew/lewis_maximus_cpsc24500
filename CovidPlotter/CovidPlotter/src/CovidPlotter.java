@@ -180,7 +180,7 @@ public class CovidPlotter {
 					}
 				}
 			}while (!country.equalsIgnoreCase("quit"));
-			System.out.print("Thank you for using this program!\n");
+			System.out.print("Thank you for using this program and please wear a mask!\n");
 		}
 	}
 }
