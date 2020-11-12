@@ -5,15 +5,26 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 class TilePanel extends JPanel{
-    Tile tl = new Tile(); 
-    private String firstColor = tl.getFirstColor();
-    private String firstShape = tl.getFirstShape();
-    private String secondColor = tl.getSecondColor();
-    private String secondShape = tl.getSecondShape();
-    private String thirdColor = tl.getThirdColor();
-    private String thirdShape = tl.getThirdShape();
-    private String fourthColor = tl.getFourthColor();
-    private String fourthShape = tl.getFourthShape();
+    private String firstColor;
+    private String firstShape;
+    private String secondColor;
+    private String secondShape;
+    private String thirdColor;
+    private String thirdShape;
+    private String fourthColor;
+    private String fourthShape;
+    public TilePanel(){
+        Tile t1 = new Tile();
+        t1.setRandomly();
+        firstColor = t1.getFirstColor();
+        firstShape = t1.getFirstShape();
+        secondColor = t1.getSecondColor();
+        secondShape = t1.getSecondShape();
+        thirdColor = t1.getThirdColor();
+        thirdShape = t1.getThirdShape();
+        fourthColor = t1.getFourthColor();
+        fourthShape = t1.getFourthShape();
+    }
     public ArrayList<String> getColorAndShape(){
         ArrayList<String> result = new ArrayList<String>();
         result.add(firstColor);
@@ -32,77 +43,129 @@ class TilePanel extends JPanel{
     switch (firstColor){
         case "red":
         g.setColor(Color.RED);
+        repaint();
         break;
         case "orange":
         g.setColor(Color.ORANGE);
+        repaint();
         break;
         case "blue":
         g.setColor(Color.BLUE);
+        repaint();
+        break;
+        case "yell":
+        g.setColor(Color.YELLOW);
+        repaint();
+        break;
+        case "green":
+        g.setColor(Color.GREEN);
+        repaint();
         break;
     }
     switch (firstShape){
         case "rect":
         g.fillRect(25, 150, 100, 100); 
+        repaint();
         break;
         case "oval":
         g.fillOval(25, 150, 100, 100);
+        repaint();
         break;
     }
     switch (secondColor){
         case "red":
         g.setColor(Color.RED);
+        repaint();
         break;
         case "orange":
         g.setColor(Color.ORANGE);
+        repaint();
         break;
         case "blue":
         g.setColor(Color.BLUE);
+        repaint();
+        break;
+        case "yell":
+        g.setColor(Color.YELLOW);
+        repaint();
+        break;
+        case "green":
+        g.setColor(Color.GREEN);
+        repaint();
         break;
     }
     switch (secondShape){
         case "rect":
         g.fillRect(150, 150, 100, 100); 
+        repaint();
         break;
         case "oval":
         g.fillOval(150, 150, 100, 100);
+        repaint();
         break;
     }
     switch (thirdColor){
         case "red":
         g.setColor(Color.RED);
+        repaint();
         break;
         case "orange":
         g.setColor(Color.ORANGE);
+        repaint();
         break;
         case "blue":
         g.setColor(Color.BLUE);
+        repaint();
+        break;
+        case "yell":
+        g.setColor(Color.YELLOW);
+        repaint();
+        break;
+        case "green":
+        g.setColor(Color.GREEN);
+        repaint();
         break;
     }
     switch (thirdShape){
         case "rect":
-        g.fillRect(275, 150, 100, 100); 
+        g.fillRect(275, 150, 100, 100);
+        repaint(); 
         break;
         case "oval":
         g.fillOval(275, 150, 100, 100);
+        repaint();
         break;
     }
     switch (fourthColor){
         case "red":
         g.setColor(Color.RED);
+        repaint();
         break;
         case "orange":
         g.setColor(Color.ORANGE);
+        repaint();
         break;
         case "blue":
         g.setColor(Color.BLUE);
+        repaint();
+        break;
+        case "yell":
+        g.setColor(Color.YELLOW);
+        repaint();
+        break;
+        case "green":
+        g.setColor(Color.GREEN);
+        repaint();
         break;
     }
     switch (fourthShape){
         case "rect":
         g.fillRect(400, 150, 100, 100); 
+        repaint();
         break;
         case "oval":
         g.fillOval(400, 150, 100, 100);
+        repaint();
         break;
     }
 } 

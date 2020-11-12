@@ -10,6 +10,7 @@ public class Tile {
     private String secondShape;
     private String thirdShape;
     private String fourthShape;
+    
     public Tile(){
         firstColor = "red";
         firstShape = "rect";
@@ -83,24 +84,28 @@ public class Tile {
 
     public String randomColor(){
         Random rnd = new Random();
-        int num = rnd.nextInt(2)+1;
+        int num = rnd.nextInt(5);
         String result = "";
-        if (num == 1){
+        if (num == 0){
             result = "red";
-        }else if (num == 2){
+        }else if (num == 1){
             result = "orange";
-        }else if (num == 3){
+        }else if (num == 2){
             result = "blue";
+        }else if (num == 3){
+            result = "yell";
+        }else if (num == 4){
+            result = "green";
         }
         return result;
     }
     public String randomShape(){
         Random rnd = new Random();
-        int num = rnd.nextInt(1)+1;
+        int num = rnd.nextInt(2);
         String result = "";
-        if (num == 1){
+        if (num == 0){
             result = "rect";
-        }else if (num == 2){
+        }else if (num == 1){
             result = "oval";
         }
         return result;
@@ -119,6 +124,6 @@ public class Tile {
 
     @Override
     public String toString(){
-        return String.format("%s %s/n %s %s/n %s %s/n %s %s/n", firstColor, firstShape, secondColor, secondShape, thirdColor, thirdShape, fourthColor, fourthShape);
+        return String.format("%s %s %s %s %s %s %s %s", firstColor, firstShape, secondColor, secondShape, thirdColor, thirdShape, fourthColor, fourthShape);
     }  
 }
