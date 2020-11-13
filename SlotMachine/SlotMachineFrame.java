@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 class SlotMachineFrame extends JFrame {
     private TilePanel pan;
@@ -32,7 +33,7 @@ class SlotMachineFrame extends JFrame {
                 JFileChooser jfc = new JFileChooser();
                 TileWriter tw =  new TileWriter();
                 if (jfc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION){
-                    if (tw.writeToText(jfc.getSelectedFile(), pan.getColorAndShape())){
+                    if (tw.write(jfc.getSelectedFile(), pan.getColorAndShape())){
                         JOptionPane.showMessageDialog(null, "Wrote color and shape for each slot.");
                     }else {
                         JOptionPane.showMessageDialog(null, "Could not write shape and color to file.");
@@ -43,7 +44,16 @@ class SlotMachineFrame extends JFrame {
         JMenuItem miLoad = new JMenuItem("Load Tiles");
         miLoad.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                //DO SOMETHING HERE LATER 
+                JFileChooser jfc = new JFileChooser();
+                TileReader tr = new TileReader();
+                if (jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+                    ArrayList<String> colorAndShapeRead = tr.read(jfc.getSelectedFile());
+                    if (colorAndShapeRead == null){
+                        JOptionPane.showMessageDialog(null, "Could not read color and shape from selected file.");
+                    } else{
+                        pan.setColorAndShape(colorAndShapeRead);
+                    } 
+                }
             }
         });
         JMenuItem miPrint = new JMenuItem("Print");

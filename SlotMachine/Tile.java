@@ -1,7 +1,8 @@
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Tile {
+public class Tile implements Serializable {
     private String firstColor;
     private String secondColor;
     private String thirdColor;

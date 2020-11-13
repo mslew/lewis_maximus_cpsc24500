@@ -2,9 +2,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-class TilePanel extends JPanel{
+class TilePanel extends JPanel implements Serializable{
     private String firstColor;
     private String firstShape;
     private String secondColor;
@@ -36,6 +37,16 @@ class TilePanel extends JPanel{
         result.add(fourthColor);
         result.add(fourthShape);
         return result;
+    }
+    public void setColorAndShape(ArrayList<String> list){
+        firstColor = list.get(0);
+        firstShape = list.get(1);
+        secondColor = list.get(2);
+        secondShape = list.get(3);
+        thirdColor = list.get(4);
+        thirdShape = list.get(5);
+        fourthColor = list.get(6);
+        fourthShape = list.get(7);
     }
    @Override
    public void paintComponent(Graphics g){
