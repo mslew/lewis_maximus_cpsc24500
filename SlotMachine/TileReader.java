@@ -1,9 +1,19 @@
+/**
+ * This class reads the data from each slot in the slot machine 
+ * This only includes the color and the shape 
+ *@author Max Lewis 
+ */
 
 import java.beans.XMLDecoder;
 import java.io.*;
 import java.util.*;
 
 public class TileReader {
+    /**
+     * These functions are used to determine the file extension entered by user and send duties to other functions 
+     * @param fname file name enetered by user
+     * @return delegates to a further read function
+     */
     public ArrayList<String> read(String fname){
         File f = new File(fname);
         return read(f);
@@ -21,6 +31,11 @@ public class TileReader {
         }
         return null;
     }
+    /**
+     * These two functions read the colors and shapes from a text file
+     * @param fname file name
+     * @return delegates 
+     */
     public ArrayList<String> readFromText(String fname){
         File f = new File(fname);
         return readFromText(f);
@@ -41,6 +56,11 @@ public class TileReader {
             return null;
         }
     }
+    /**
+     * These two functions read the colors and shapes from a binary file 
+     * @param fname file name
+     * @return delegates
+     */
     public ArrayList<String> readFromBinary(String fname){
         File f = new File(fname);
         return readFromBinary(f);
@@ -56,6 +76,11 @@ public class TileReader {
             return null;
         }
     }
+    /**
+     * These two functions read the colors and shapes form a XML file
+     * @param fname file name
+     * @return delegates 
+     */
     public ArrayList<String> readFromXML(String fname){
         File f = new File(fname);
         return readFromXML(f);

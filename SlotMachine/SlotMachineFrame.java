@@ -1,3 +1,8 @@
+/**
+ * This class builds the frame for the user
+ * @author Max Lewis 
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -5,6 +10,9 @@ import java.util.ArrayList;
 
 class SlotMachineFrame extends JFrame {
     private TilePanel pan;
+    /**
+     * This setups the look. adding the various panels, menu, labels, and buttons
+     */
     public void setupLook(){
         setBounds(100, 100, 540, 500);
         Container c = getContentPane();
@@ -24,6 +32,9 @@ class SlotMachineFrame extends JFrame {
         c.add(panSouth,BorderLayout.SOUTH);
         setupMenu();
     }
+    /**
+     * This setups the menu. Adding a file and a help. 
+     */
     public void setupMenu(){
         JMenuBar mbar = new JMenuBar();
         JMenu mnuFile = new JMenu("File");
@@ -91,6 +102,9 @@ class SlotMachineFrame extends JFrame {
         mbar.add(mnuHelp);
         setJMenuBar(mbar);
     }
+    /**
+     * this is the constructor. it simply setsup the look, close operation, and the title for the window
+     */
     public SlotMachineFrame(){
         setupLook();
         setDefaultCloseOperation(EXIT_ON_CLOSE);

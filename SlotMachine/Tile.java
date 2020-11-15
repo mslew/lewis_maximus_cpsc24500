@@ -11,7 +11,9 @@ public class Tile implements Serializable {
     private String secondShape;
     private String thirdShape;
     private String fourthShape;
-    
+    /**
+     * this function is a constructor and simply sets each private String initially
+     */
     public Tile(){
         firstColor = "red";
         firstShape = "rect";
@@ -22,9 +24,19 @@ public class Tile implements Serializable {
         fourthColor = "red";
         fourthShape = "oval"; 
     }
+    /**
+     * second constructor 
+     * @param firstColor
+     */
     public Tile(String firstColor){
         firstColor = "red";
     }
+    /**
+     * These are all of the getters and setters for the private String values. 
+     * comments seperated for each slot
+     * @return
+     */
+
     //first
     public String getFirstColor(){
         return firstColor;
@@ -68,6 +80,8 @@ public class Tile implements Serializable {
     public void setThirdShape(String thirdShape){
         this.thirdShape = thirdShape;
     }
+    //third
+
     //fourth
     public String getFourthColor(){
         return fourthColor;
@@ -83,6 +97,10 @@ public class Tile implements Serializable {
     }
     //fourth
 
+    /**
+     * This function generates a random color
+     * @return result. This is the random color in the form of a String 
+     */
     public String randomColor(){
         Random rnd = new Random();
         int num = rnd.nextInt(5);
@@ -100,6 +118,10 @@ public class Tile implements Serializable {
         }
         return result;
     }
+    /**
+     * This function generates a random shape
+     * @return result. The is the random shape in the form of a String
+     */
     public String randomShape(){
         Random rnd = new Random();
         int num = rnd.nextInt(2);
@@ -111,18 +133,50 @@ public class Tile implements Serializable {
         }
         return result;
     }
-    // 3 colors and 2 shapes
+    /**
+     * This function sets each private String to a random value
+     */
     public void setRandomly(){
         setFirstColor(randomColor());
-        setSecondColor(randomColor());
-        setThirdColor(randomColor());
-        setFourthColor(randomColor());
         setFirstShape(randomShape());
+        setSecondColor(randomColor());
         setSecondShape(randomShape());
+        setThirdColor(randomColor());
         setThirdShape(randomShape());
+        setFourthColor(randomColor());
         setFourthShape(randomShape());
     }
-
+    /**
+     * This changes the first color and shape only
+     */
+    public void changeFirstColorAndShape(){
+        setFirstColor(randomColor());
+        setFirstShape(randomShape());
+    }
+    /**
+     * This changes the second color and shape only 
+     */
+    public void changeSecondColorAndShape(){
+        setSecondColor(randomColor());
+        setSecondShape(randomShape());
+    }
+    /**
+     * This changes the third color and shape only 
+     */
+    public void changeThirdColorAndShape(){
+        setThirdColor(randomColor());
+        setThirdShape(randomShape());
+    }
+    /**
+     * This changes the fourth color and shape only 
+     */
+    public void changeFourthColorAndShape(){
+        setFourthColor(randomColor());
+        setFourthShape(randomShape());
+    }
+    /**
+     * This is the toString function that is used for saving the data
+     */
     @Override
     public String toString(){
         return String.format("%s %s %s %s %s %s %s %s", firstColor, firstShape, secondColor, secondShape, thirdColor, thirdShape, fourthColor, fourthShape);
