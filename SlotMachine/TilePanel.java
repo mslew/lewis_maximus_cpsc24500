@@ -20,13 +20,17 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
     private String thirdShape;
     private String fourthColor;
     private String fourthShape;
+    private Tile tl = new Tile();
     private int x;
     private int y;
+    public void mouseClicked(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
     /**
      * Default constructor to intialize the values for each slot 
      */
     public TilePanel(){
-        Tile tl = new Tile();
         tl.setRandomly();
         addMouseListener(this);
         firstColor = tl.getFirstColor();
@@ -243,7 +247,6 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
     public void changeColorAndShape(){
         int x = myGetX();
         int y = myGetY();
-        Tile tl = new Tile();
         if ((x >= 25  && x <= 125) && (y>=150 && y<=250)){
             tl.changeFirstColorAndShape();
             firstColor = tl.getFirstColor();
@@ -269,22 +272,16 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
             repaint();
         }
     }
-    /**
-     * Code would not run without these. they do absolutely nothing 
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
+    public void setForRandomize(){
+        tl.setRandomly();
+        firstColor = tl.getFirstColor();
+        firstShape = tl.getFirstShape(); 
+        secondColor = tl.getSecondColor();
+        secondShape = tl.getSecondShape();
+        thirdColor = tl.getThirdColor();
+        thirdShape = tl.getThirdShape();
+        fourthColor = tl.getFourthColor();
+        fourthShape = tl.getFourthShape();
+        repaint(); 
     }
 }

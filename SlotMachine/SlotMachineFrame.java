@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 class SlotMachineFrame extends JFrame {
     private TilePanel pan;
+    private TileChecker tc = new TileChecker();
+    private boolean shapeStatus;
+    private boolean colorStatus;
     /**
      * This setups the look. adding the various panels, menu, labels, and buttons
      */
@@ -24,11 +27,78 @@ class SlotMachineFrame extends JFrame {
         c.add(top, BorderLayout.NORTH);
         JPanel panSouth = new JPanel();
         panSouth.setLayout(new FlowLayout());
-        panSouth.add(new JButton("Max"));
-        panSouth.add(new JButton("Mid"));
-        panSouth.add(new JButton("Min"));
+        JButton btnMax = new JButton("Max");
+        btnMax.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                pan.setForRandomize();
+                colorStatus = tc.colorMatch();
+                shapeStatus = tc.shapeMatch();
+                if (colorStatus == true){
+                    JOptionPane.showMessageDialog(null, "You have a match");
+                }else if (colorStatus == false){
+                    //JOptionPane.showMessageDialog(null, "You suck");
+                }
+                if (shapeStatus == true){
+                    JOptionPane.showMessageDialog(null, "You have a match");
+                }else if (shapeStatus == false){
+                    //JOptionPane.showMessageDialog(null, "You suck");
+                }
+            }
+        });
+        JButton btnMid = new JButton("Mid");
+        btnMid.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                pan.setForRandomize();
+                colorStatus = tc.colorMatch();
+                shapeStatus = tc.shapeMatch();
+                if (colorStatus == true){
+                    JOptionPane.showMessageDialog(null, "You have a match");
+                }else if (colorStatus == false){
+                    //JOptionPane.showMessageDialog(null, "You suck");
+                }
+                if (shapeStatus == true){
+                    JOptionPane.showMessageDialog(null, "You have a match");
+                }else if (shapeStatus == false){
+                    //JOptionPane.showMessageDialog(null, "You suck");
+                }
+            }
+        });
+        JButton btnMin = new JButton("Min");
+        btnMin.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                pan.setForRandomize();
+                colorStatus = tc.colorMatch();
+                shapeStatus = tc.shapeMatch();
+                if (colorStatus == true){
+                    JOptionPane.showMessageDialog(null, "You have a match");
+                }else if (colorStatus == false){
+                    //JOptionPane.showMessageDialog(null, "You suck");
+                }
+                if (shapeStatus == true){
+                    JOptionPane.showMessageDialog(null, "You have a match");
+                }else if (shapeStatus == false){
+                    //JOptionPane.showMessageDialog(null, "You suck");
+                }
+            }
+        });
+        JTextField txtBalance = new JTextField(6);
+        txtBalance.setEditable(false);
+        txtBalance.setText("5");
+        if (Integer.parseInt(txtBalance.getText()) <= 0){
+            JOptionPane.showMessageDialog(null, "You lost!");
+            btnMax.setEnabled(false);
+            btnMid.setEnabled(false);
+            btnMin.setEnabled(false);
+        }else {
+            btnMax.setEnabled(true);
+            btnMid.setEnabled(true);
+            btnMin.setEnabled(true);
+        }
+        panSouth.add(btnMax);
+        panSouth.add(btnMid);
+        panSouth.add(btnMin);
         panSouth.add(new JLabel("$"));
-        panSouth.add(new JTextField(4));
+        panSouth.add(txtBalance);
         c.add(panSouth,BorderLayout.SOUTH);
         setupMenu();
     }
