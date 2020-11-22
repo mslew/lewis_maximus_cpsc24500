@@ -1,3 +1,9 @@
+/**
+ * This class randomizes each slot of the slotmachine
+ * Has two functions, randomColor() which randomizes the color, and randomShape()
+ * which randomizes the shape 
+ * @author Max Lewis 
+ */
 import java.util.Random;
 
 public class TileRandomizer {

@@ -1,7 +1,7 @@
 /**
  * This class reads the data from each slot in the slot machine 
  * This only includes the color and the shape 
- *@author Max Lewis 
+ * @author Max Lewis 
  */
 
 import java.beans.XMLDecoder;

@@ -1,4 +1,7 @@
-
+/**
+ * This class builds the content of each tile in the slotmachine 
+ * @author Max Lewis
+ */
 import java.io.Serializable;
 import java.util.Random;
 
@@ -38,7 +41,6 @@ public class Tile implements Serializable {
      * @return
      */
 
-    //first
     public String getFirstColor(){
         return firstColor;
     }
@@ -51,9 +53,7 @@ public class Tile implements Serializable {
     public void setFirstShape(String firstShape){
         this.firstShape = firstShape;
     }
-    //first
 
-    //second
     public String getSecondColor(){
         return secondColor;
     }
@@ -66,9 +66,7 @@ public class Tile implements Serializable {
     public void setSecondShape(String secondShape){
         this.secondShape = secondShape;
     }
-    //second
 
-    //third
     public String getThirdColor(){
         return thirdColor;
     }
@@ -81,9 +79,7 @@ public class Tile implements Serializable {
     public void setThirdShape(String thirdShape){
         this.thirdShape = thirdShape;
     }
-    //third
 
-    //fourth
     public String getFourthColor(){
         return fourthColor;
     }
@@ -96,7 +92,6 @@ public class Tile implements Serializable {
     public void setFourthShape(String fourthShape){
         this.fourthShape = fourthShape;
     }
-    //fourth
 
     /**
      * This function sets each private String to a random value

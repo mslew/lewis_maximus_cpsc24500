@@ -1,6 +1,17 @@
+/**
+ * This class has determines if the tiles have the same color or shape
+ * Has two functions to achieve this process.
+ * @author Max Lewis 
+ */
 import java.util.ArrayList;
 
 public class TileChecker {
+    /**
+     * This determines if the slot's colors match
+     * @param listOfColors list of each color in the slots
+     * @return a boolean value of true or false. True being all the slots are the same color
+     * or false, meaning not all the tiles are the same color 
+     */
     public boolean colorMatch(ArrayList<String> listOfColors){
         int i = 0;
         String nextColor;
@@ -24,6 +35,12 @@ public class TileChecker {
             return false;
         }
     }
+    /**
+     * This determines if the slot's shapes match
+     * @param listOfShapes list of each shape in the slots
+     * @return a boolean value of true or false. True being all the slots are the same shape
+     * or false, meaning not all the tiles are the same shape 
+     */
     public boolean shapeMatch(ArrayList<String> listOfShapes){
         int i = 0;
         String nextShape;

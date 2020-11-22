@@ -273,6 +273,9 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
             repaint();
         }
     }
+    /**
+     * This sets the tiles to random color and shape 
+     */
     public void setForRandomize(){
         tl.setRandomly();
         firstColor = tl.getFirstColor();
@@ -285,6 +288,11 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
         fourthShape = tl.getFourthShape();
         repaint(); 
     }
+    /**
+     * This function makes a list of all the slot's colors and 
+     * sends it to the colorMatch() function in the tilechecker class
+     * @return result a boolean value if all of the tiles match from their color 
+     */
     public boolean getColorStatus(){
         boolean result;
         ArrayList<String> listOfColors = new ArrayList<String>();
@@ -295,6 +303,11 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
         result  = tc.colorMatch(listOfColors);
         return result;
     }
+    /**
+     * This function makes a list of all the slot's shapes and 
+     * sends it to the shapeMatch() function in the TileChecker class 
+     * @return result a boolean value if all of the tiles match from their shape
+     */
     public boolean getShapeStatus(){
         boolean result;
         ArrayList<String> listOfShapes = new ArrayList<String>();
@@ -304,5 +317,12 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
         listOfShapes.add(fourthShape);
         result = tc.shapeMatch(listOfShapes);
         return result;
-    }  
+    }
+    /**
+     * This is used to print out the values of all the slots. Called from the "Print" selection in the menu bar
+     */
+    public void print(){
+        System.out.printf("First Slot:\nColor: %s\nShape: %s\n\nSecond Slot:\nColor: %s\nShape: %s\n\nThird Slot:\nColor: %s\nShape: %s\n\nFourth Slot:\nColor: %s\nShape: %s\n\n",
+        firstColor, firstShape, secondColor, secondShape, thirdColor, thirdShape, fourthColor, fourthShape);
+    } 
 }
