@@ -21,6 +21,7 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
     private String fourthColor;
     private String fourthShape;
     private Tile tl = new Tile();
+    private TileChecker tc = new TileChecker();
     private int x;
     private int y;
     public void mouseClicked(MouseEvent e) {}
@@ -284,4 +285,24 @@ class TilePanel extends JPanel implements Serializable, MouseListener{
         fourthShape = tl.getFourthShape();
         repaint(); 
     }
+    public boolean getColorStatus(){
+        boolean result;
+        ArrayList<String> listOfColors = new ArrayList<String>();
+        listOfColors.add(firstColor);
+        listOfColors.add(secondColor);
+        listOfColors.add(thirdColor);
+        listOfColors.add(fourthColor);
+        result  = tc.colorMatch(listOfColors);
+        return result;
+    }
+    public boolean getShapeStatus(){
+        boolean result;
+        ArrayList<String> listOfShapes = new ArrayList<String>();
+        listOfShapes.add(firstShape);
+        listOfShapes.add(secondShape);
+        listOfShapes.add(thirdShape);
+        listOfShapes.add(fourthShape);
+        result = tc.shapeMatch(listOfShapes);
+        return result;
+    }  
 }

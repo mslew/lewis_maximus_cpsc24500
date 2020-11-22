@@ -10,9 +10,17 @@ import java.util.ArrayList;
 
 class SlotMachineFrame extends JFrame {
     private TilePanel pan;
-    private TileChecker tc = new TileChecker();
-    private boolean shapeStatus;
-    private boolean colorStatus;
+    private int balance;
+    private JButton btnMax = new JButton("Max");
+    private JButton btnMid = new JButton("Mid");
+    private JButton btnMin = new JButton("Min");
+    private JTextField txtBalance = new JTextField(6);
+    public int getBalance(){
+        return balance;
+    }
+    public void setBalance(int balance){
+        this.balance = balance;
+    }
     /**
      * This setups the look. adding the various panels, menu, labels, and buttons
      */
@@ -27,65 +35,74 @@ class SlotMachineFrame extends JFrame {
         c.add(top, BorderLayout.NORTH);
         JPanel panSouth = new JPanel();
         panSouth.setLayout(new FlowLayout());
-        JButton btnMax = new JButton("Max");
+        //JTextField txtBalance = new JTextField(6);
+        txtBalance.setEditable(false);
+        txtBalance.setText("5");
+        //JButton btnMax = new JButton("Max");
         btnMax.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 pan.setForRandomize();
-                colorStatus = tc.colorMatch();
-                shapeStatus = tc.shapeMatch();
-                if (colorStatus == true){
-                    JOptionPane.showMessageDialog(null, "You have a match");
-                }else if (colorStatus == false){
-                    //JOptionPane.showMessageDialog(null, "You suck");
+                setBalance(Integer.parseInt(txtBalance.getText()));
+                if (pan.getColorStatus() == true){
+                    //25*
+                    balance = balance * 25;
+                    setBalance(balance);
+                    txtBalance.setText(Integer.toString(balance));
+                }else if (pan.getColorStatus() == false){
+                    //-25*
                 }
-                if (shapeStatus == true){
-                    JOptionPane.showMessageDialog(null, "You have a match");
-                }else if (shapeStatus == false){
-                    //JOptionPane.showMessageDialog(null, "You suck");
+                if ((pan.getColorStatus() == true) && (pan.getShapeStatus() == true)){
+                    //100*
+                    balance = balance * 100;
+                    setBalance(balance);
+                    txtBalance.setText(Integer.toString(balance));
                 }
             }
         });
-        JButton btnMid = new JButton("Mid");
+        //JButton btnMid = new JButton("Mid");
         btnMid.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 pan.setForRandomize();
-                colorStatus = tc.colorMatch();
-                shapeStatus = tc.shapeMatch();
-                if (colorStatus == true){
-                    JOptionPane.showMessageDialog(null, "You have a match");
-                }else if (colorStatus == false){
-                    //JOptionPane.showMessageDialog(null, "You suck");
+                setBalance(Integer.parseInt(txtBalance.getText()));
+                if (pan.getColorStatus() == true){
+                    //10*
+                    balance = balance * 10;
+                    setBalance(balance);
+                    txtBalance.setText(Integer.toString(balance));
+                }else if (pan.getColorStatus() == false){
+                    //-10*
                 }
-                if (shapeStatus == true){
-                    JOptionPane.showMessageDialog(null, "You have a match");
-                }else if (shapeStatus == false){
-                    //JOptionPane.showMessageDialog(null, "You suck");
+                if ((pan.getColorStatus() == true) && (pan.getShapeStatus() == true)){
+                    //50*
+                    balance = balance * 50;
+                    setBalance(balance);
+                    txtBalance.setText(Integer.toString(balance));
                 }
             }
         });
-        JButton btnMin = new JButton("Min");
+        //JButton btnMin = new JButton("Min");
         btnMin.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 pan.setForRandomize();
-                colorStatus = tc.colorMatch();
-                shapeStatus = tc.shapeMatch();
-                if (colorStatus == true){
-                    JOptionPane.showMessageDialog(null, "You have a match");
-                }else if (colorStatus == false){
-                    //JOptionPane.showMessageDialog(null, "You suck");
+                setBalance(Integer.parseInt(txtBalance.getText()));
+                if (pan.getColorStatus() == true){
+                    //5*
+                    balance = balance * 5;
+                    setBalance(balance);
+                    txtBalance.setText(Integer.toString(balance));
+                }else if (pan.getColorStatus() == false){
+                    //-5*
                 }
-                if (shapeStatus == true){
-                    JOptionPane.showMessageDialog(null, "You have a match");
-                }else if (shapeStatus == false){
-                    //JOptionPane.showMessageDialog(null, "You suck");
+                if((pan.getColorStatus() == true) && (pan.getShapeStatus() == true)){
+                    //10*
+                    balance = balance * 10;
+                    setBalance(balance);
+                    txtBalance.setText(Integer.toString(balance));
                 }
             }
         });
-        JTextField txtBalance = new JTextField(6);
-        txtBalance.setEditable(false);
-        txtBalance.setText("5");
-        if (Integer.parseInt(txtBalance.getText()) <= 0){
-            JOptionPane.showMessageDialog(null, "You lost!");
+        if (Integer.parseInt(txtBalance.getText()) == 0){
+            JOptionPane.showMessageDialog(null, "Bankrupt!");
             btnMax.setEnabled(false);
             btnMid.setEnabled(false);
             btnMin.setEnabled(false);
@@ -140,13 +157,18 @@ class SlotMachineFrame extends JFrame {
         JMenuItem miPrint = new JMenuItem("Print");
         miPrint.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                //DO SOMETHING LATER HERE 
+                System.out.print("First Slot:\nColor:\nShape:\n\nSecond Slot:\nColor:\nShape:\n\nThird Slot:\nColor:\nShape:\n\nFourth Slot:\nColor:\nShape:\n\n");
             }
         });
         JMenuItem miRestart = new JMenuItem("Restart");
         miRestart.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                //DO SOMETHING LATER HERE 
+                balance = 5;
+                setBalance(balance);
+                txtBalance.setText(Integer.toString(balance));
+                btnMax.setEnabled(true);
+                btnMid.setEnabled(true);
+                btnMin.setEnabled(true);
             }
         });
         JMenuItem miExit = new JMenuItem("Exit");
@@ -167,6 +189,13 @@ class SlotMachineFrame extends JFrame {
                 JOptionPane.showMessageDialog(null, "This application was created by Maximus Lewis. https://github.com/mslew/lewis_maximus_cpsc24500. COPYRIGHT 2020");
             }
         });
+        JMenuItem miBettingHelp = new JMenuItem("Betting Help");
+        miBettingHelp.addActionListener(new ActionListener (){
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(null, "If you have a gambiling problem. Call 1-800-GAMBLER");
+            }
+        });
+        mnuHelp.add(miBettingHelp);
         mnuHelp.add(miAbout);
         mbar.add(mnuFile);
         mbar.add(mnuHelp);
