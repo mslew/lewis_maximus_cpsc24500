@@ -12,10 +12,10 @@ class SlotMachineFrame extends JFrame {
     private TilePanel pan = new TilePanel();
     private double balance;
     private double wager;
-    private JButton btnMax = new JButton("Max");
-    private JButton btnMid = new JButton("Mid");
-    private JButton btnMin = new JButton("Min");
-    private JTextField txtBalance = new JTextField(6);
+    private final JButton btnMax = new JButton("Max");
+    private final JButton btnMid = new JButton("Mid");
+    private final JButton btnMin = new JButton("Min");
+    private final JTextField txtBalance = new JTextField(6);
     /**
      * This is the getter and setter for the balance
      * @return balance
@@ -60,9 +60,10 @@ class SlotMachineFrame extends JFrame {
             public void actionPerformed(ActionEvent e){
                 pan.setForRandomize();
                 setBalance(Double.parseDouble(txtBalance.getText()));
+                setWager(getBalance());
                 if (pan.getColorStatus() == true){
                     //25*
-                    balance = balance * 25;
+                    balance = wager * 25;
                     setBalance(balance);
                     txtBalance.setText(Double.toString(balance));
                 }else if (pan.getColorStatus() == false){
@@ -72,7 +73,7 @@ class SlotMachineFrame extends JFrame {
                 }
                 if ((pan.getColorStatus() == true) && (pan.getShapeStatus() == true)){
                     //100*
-                    balance = balance * 100;
+                    balance = wager * 100;
                     setBalance(balance);
                     txtBalance.setText(Double.toString(balance));
                 }
@@ -86,7 +87,7 @@ class SlotMachineFrame extends JFrame {
                 setWager(.5 * getBalance());
                 if (pan.getColorStatus() == true){
                     //10*
-                    balance = wager * 10;
+                    balance = (wager * 10) + balance;
                     setBalance(balance);
                     txtBalance.setText(Double.toString(balance));
                 }else if (pan.getColorStatus() == false){
@@ -108,10 +109,10 @@ class SlotMachineFrame extends JFrame {
             public void actionPerformed(ActionEvent e){
                 pan.setForRandomize();
                 setBalance(Double.parseDouble(txtBalance.getText()));
-                setWager(.5 * getBalance());
+                setWager(.1 * getBalance());
                 if (pan.getColorStatus() == true){
                     //5*
-                    balance = wager * 5;
+                    balance = (wager * 5) + balance;
                     setBalance(balance);
                     txtBalance.setText(Double.toString(balance));
                 }else if (pan.getColorStatus() == false){
@@ -122,7 +123,7 @@ class SlotMachineFrame extends JFrame {
                 }
                 if((pan.getColorStatus() == true) && (pan.getShapeStatus() == true)){
                     //10*
-                    balance = wager * 10;
+                    balance = (wager * 10) + wager;
                     setBalance(balance);
                     txtBalance.setText(Double.toString(balance));
                 }
