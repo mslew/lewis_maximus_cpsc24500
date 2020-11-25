@@ -6,7 +6,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.lang.Math;
 
 class SlotMachineFrame extends JFrame {
     private TilePanel pan = new TilePanel();
@@ -65,17 +67,17 @@ class SlotMachineFrame extends JFrame {
                     //25*
                     balance = wager * 25;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }else if (pan.getColorStatus() == false){
                     balance = 0;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }
                 if ((pan.getColorStatus() == true) && (pan.getShapeStatus() == true)){
                     //100*
                     balance = wager * 100;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }
                 checkBalance(balance);
             }
@@ -89,18 +91,18 @@ class SlotMachineFrame extends JFrame {
                     //10*
                     balance = (wager * 10) + balance;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }else if (pan.getColorStatus() == false){
                     //-10*
                     balance = balance - wager;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }
                 if ((pan.getColorStatus() == true) && (pan.getShapeStatus() == true)){
                     //50*
                     balance = wager * 50;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }
                 checkBalance(balance);
             }
@@ -114,18 +116,18 @@ class SlotMachineFrame extends JFrame {
                     //5*
                     balance = (wager * 5) + balance;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }else if (pan.getColorStatus() == false){
                     //-5*
                     balance = balance - wager;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }
                 if((pan.getColorStatus() == true) && (pan.getShapeStatus() == true)){
                     //10*
                     balance = (wager * 10) + wager;
                     setBalance(balance);
-                    txtBalance.setText(Double.toString(balance));
+                    txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }
                 checkBalance(balance);
             }
@@ -163,7 +165,7 @@ class SlotMachineFrame extends JFrame {
         });
         JMenuItem miLoad = new JMenuItem("Load Tiles");
         /**
-         * Loads the contents of ewach slot in a .TXT, .BIN, or .XML file 
+         * Loads the contents of each slot in a .TXT, .BIN, or .XML file
          */
         miLoad.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -243,7 +245,7 @@ class SlotMachineFrame extends JFrame {
         setJMenuBar(mbar);
     }
     /**
-     * this is the constructor. it simply setsup the look, close operation, and the title for the window
+     * this is the constructor. it simply sets up the look, close operation, and the title for the window
      */
     public SlotMachineFrame(){
         setupLook();
@@ -256,7 +258,7 @@ class SlotMachineFrame extends JFrame {
      * @param balance the balance after the bet was placed 
      */
     public void checkBalance(Double balance){
-        if (balance < 0.01){
+        if (balance < 0.01 || balance < 0.05){
             JOptionPane.showMessageDialog(null, "Bankrupt!");
             btnMax.setEnabled(false);
             btnMid.setEnabled(false);
