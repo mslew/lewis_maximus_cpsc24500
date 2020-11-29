@@ -6,7 +6,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.lang.Math;
 
@@ -93,7 +92,6 @@ class SlotMachineFrame extends JFrame {
                     setBalance(balance);
                     txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }else if (pan.getColorStatus() == false){
-                    //-10*
                     balance = balance - wager;
                     setBalance(balance);
                     txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
@@ -118,7 +116,6 @@ class SlotMachineFrame extends JFrame {
                     setBalance(balance);
                     txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
                 }else if (pan.getColorStatus() == false){
-                    //-5*
                     balance = balance - wager;
                     setBalance(balance);
                     txtBalance.setText(Double.toString(Math.round(balance * 100.0) / 100.0));
@@ -260,6 +257,7 @@ class SlotMachineFrame extends JFrame {
     public void checkBalance(Double balance){
         if (balance < 0.01 || balance < 0.05){
             JOptionPane.showMessageDialog(null, "Bankrupt!");
+            txtBalance.setText("0");
             btnMax.setEnabled(false);
             btnMid.setEnabled(false);
             btnMin.setEnabled(false);
