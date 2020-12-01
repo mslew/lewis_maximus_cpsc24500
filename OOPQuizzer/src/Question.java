@@ -4,7 +4,10 @@
 
 public class Question {
     private String question;
-    private String choices;
+    private String a;
+    private String b;
+    private String c;
+    private String d;
     private String answer;
     public String getQuestion(){
         return question;
@@ -12,11 +15,29 @@ public class Question {
     public void setQuestion(String question){
         this.question = question;
     }
-    public String getChoices(){
-        return choices;
+    public String getA(){
+        return a;
     }
-    public void setChoices(String choices){
-        this.choices = choices;
+    public void setA(String a){
+        this.a = a;
+    }
+    public String getB(){
+        return b;
+    }
+    public void setB(String b){
+        this.b = b;
+    }
+    public String getC(){
+        return c;
+    }
+    public void setC(String c){
+        this.c = c;
+    }
+    public String getD(){
+        return d;
+    }
+    public void setD(String d){
+        this.d = d;
     }
     public String getAnswer(){
         return answer;
@@ -26,16 +47,22 @@ public class Question {
     }
     public Question() {
         question = "";
-        choices = "";
+        a = "";
+        b = "";
+        c = "";
+        d = "";
         answer = "";
     }
-    public Question(String question, String choices, String answer){
+    public Question(String question, String a, String b, String c, String d, String answer){
         setQuestion(question);
-        setChoices(choices);
+        setA(a);
+        setB(b);
+        setC(c);
+        setB(b);
         setAnswer(answer);
     }
     @Override
     public String toString(){
-        return String.format("%s\n%s\n%s", question, choices, answer);
+        return String.format("%s\na: %s\nb: %s\nc: %s\nd: %s\nAnswer: %s\n", question, a, b, c, d, answer);
     }
 }
