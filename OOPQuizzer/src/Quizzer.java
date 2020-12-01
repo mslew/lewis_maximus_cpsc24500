@@ -14,24 +14,27 @@ public class Quizzer {
         int questionNum;
         int numberCorrect = 0;
         String letterChoice;
+        String choiceExpanded = "";
         String answerLetter;
         String correctAnswerLetter;
+        Question rndQuestion;
         for (int i = 0; i < numberOfQuestions; i++){
             questionNum = rnd.nextInt(questions.size()+1);
-            System.out.println(questions.get(questionNum));
+            rndQuestion = questions.get(questionNum);
+            System.out.println();
             System.out.println("Enter the letter of your choice: ");
             letterChoice = sc.nextLine();
             if (letterChoice.equalsIgnoreCase("a")){
-                correctAnswerLetter = question.getA();
+                choiceExpanded = rndQuestion.getA();
             }else if(letterChoice.equalsIgnoreCase("b")){
-                correctAnswerLetter = question.getB();
+                choiceExpanded = rndQuestion.getB();
             }else if(letterChoice.equalsIgnoreCase("c")){
-                correctAnswerLetter = question.getC();
+                choiceExpanded = rndQuestion.getC();
             }else if(letterChoice.equalsIgnoreCase("d")){
-                correctAnswerLetter = question.getD();
+                choiceExpanded = rndQuestion.getD();
             }
-            if (letterChoice.equalsIgnoreCase(questions.getAnswer())){
-
+            if (choiceExpanded.equalsIgnoreCase(rndQuestion.getAnswer())){
+                numberCorrect++;
             }
         }
         return numberCorrect;

@@ -47,6 +47,7 @@ public class QuizApp {
                 System.out.println("\nEnter the amount of questions you would want: ");
                 int numberOfQuestions = sc.nextInt();
                 numberCorrect = qz.showQuestion(numberOfQuestions, questions);
+                System.out.printf("\nYou got %d questions correct.", numberCorrect);
             }else if (choice == 2){
                 qp.printQuestions(questions);
             }else if (choice == 3){
