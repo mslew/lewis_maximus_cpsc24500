@@ -15,13 +15,15 @@ public class Quizzer {
         int numberCorrect = 0;
         String letterChoice;
         String choiceExpanded = "";
-        String answerLetter;
-        String correctAnswerLetter;
         Question rndQuestion;
         for (int i = 0; i < numberOfQuestions; i++){
-            questionNum = rnd.nextInt(questions.size()+1);
-            rndQuestion = questions.get(questionNum);
-            System.out.println();
+            questionNum = rnd.nextInt(questions.size());
+            rndQuestion = questions.get(questionNum) ;
+            System.out.println(rndQuestion.getQuestion());
+            System.out.println("a. " + rndQuestion.getA());
+            System.out.println("b. " + rndQuestion.getB());
+            System.out.println("c. " + rndQuestion.getC());
+            System.out.println("d. " + rndQuestion.getD() + "\n");
             System.out.println("Enter the letter of your choice: ");
             letterChoice = sc.nextLine();
             if (letterChoice.equalsIgnoreCase("a")){
@@ -35,6 +37,10 @@ public class Quizzer {
             }
             if (choiceExpanded.equalsIgnoreCase(rndQuestion.getAnswer())){
                 numberCorrect++;
+                System.out.println("Correct!\n");
+            }else {
+                System.out.println("Incorrect!");
+                System.out.printf("The answer is %s\n", rndQuestion.getAnswer());
             }
         }
         return numberCorrect;

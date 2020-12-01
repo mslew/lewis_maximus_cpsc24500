@@ -42,7 +42,7 @@ public class Question {
     public String getAnswer(){
         return answer;
     }
-    public void setAnswer(String Answer){
+    public void setAnswer(String answer){
         this.answer = answer;
     }
     public Question() {
@@ -58,7 +58,7 @@ public class Question {
         setA(a);
         setB(b);
         setC(c);
-        setB(b);
+        setD(d);
         setAnswer(answer);
     }
     @Override

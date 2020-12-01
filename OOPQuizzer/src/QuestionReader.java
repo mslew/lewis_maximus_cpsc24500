@@ -25,11 +25,11 @@ public class QuestionReader {
             while (itr.hasNext()){
                 questionObject = (JSONObject)itr.next();
                 question = questionObject.get("question").toString();
-                a = questionObject.get("a").toString();
-                b = questionObject.get("b").toString();
-                c = questionObject.get("c").toString();
-                d = questionObject.get("d").toString();
-                answer = questionObject.get("answer").toString();
+                a = questionObject.get("a").toString().strip();
+                b = questionObject.get("b").toString().strip();
+                c = questionObject.get("c").toString().strip();
+                d = questionObject.get("d").toString().strip();
+                answer = questionObject.get("answer").toString().strip();
                 questions.add(new Question(question, a, b, c, d, answer));
             }
             reader.close();
