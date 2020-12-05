@@ -8,11 +8,30 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class QuizApp {
+
+    /**
+     * This function simply prints a welcome header
+     */
     public static void welcome(){
         System.out.println("********************************");
         System.out.println("      OOP Concepts Quizzer      ");
         System.out.println("********************************");
     }
+
+    /**
+     * This function simply prints out a footer once the user is done with the program
+     */
+    public static void footer(){
+        System.out.println("*****************************************************************");
+        System.out.println("                 Thank You for Taking CPSC 24500                 ");
+        System.out.println("*****************************************************************");
+    }
+
+    /**
+     * This function prints out the menu for the user and grabs their choice
+     * @param sc the scanner
+     * @return the user's choice, in the form of an int
+     */
     public static int printMenuAndGetChoice(Scanner sc){
         System.out.println("\nHere are your choices:");
         System.out.println("1. Take a quiz");
@@ -23,6 +42,11 @@ public class QuizApp {
         sc.nextLine();
         return result;
     }
+
+    /**
+     * Main method, contains the various objects used and
+     * runs a while loop until the user enters a 3 for an exit
+     */
     public static void main(String[] args){
         welcome();
         QuestionReader qr = new QuestionReader();
@@ -54,6 +78,6 @@ public class QuizApp {
                 break;
             }
         }while (choice != 3);
-        System.out.println("Thanks for using the program.");
+        footer();
     }
 }

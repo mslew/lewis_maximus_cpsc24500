@@ -9,6 +9,11 @@ public class Question {
     private String c;
     private String d;
     private String answer;
+
+    /**
+     * Getters and setters for all of the parts of each question
+     * @return
+     */
     public String getQuestion(){
         return question;
     }
@@ -45,6 +50,10 @@ public class Question {
     public void setAnswer(String answer){
         this.answer = answer;
     }
+
+    /**
+     * Initialize each value to be blank
+     */
     public Question() {
         question = "";
         a = "";
@@ -53,6 +62,16 @@ public class Question {
         d = "";
         answer = "";
     }
+
+    /**
+     * Default constructor  to set each part of the quesion
+     * @param question question
+     * @param a choice a
+     * @param b choice b
+     * @param c choice c
+     * @param d choice d
+     * @param answer the correct asnwer
+     */
     public Question(String question, String a, String b, String c, String d, String answer){
         setQuestion(question);
         setA(a);
@@ -61,6 +80,11 @@ public class Question {
         setD(d);
         setAnswer(answer);
     }
+
+    /**
+     * To string function to print out each part of the question object
+     * @return the question and all of its parts
+     */
     @Override
     public String toString(){
         return String.format("%s\na: %s\nb: %s\nc: %s\nd: %s\nAnswer: %s\n", question, a, b, c, d, answer);

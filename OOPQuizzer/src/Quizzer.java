@@ -8,6 +8,17 @@ import java.util.Scanner;
  * @author Max Lewis
  */
 public class Quizzer {
+    /**
+     * This function quizzes the user by picking random questions from the arraylist of questions
+     * created in QuizApp. It prints the questions and all the choices,
+     * avoiding the answer. It checks and sees if the user's choice matches with the answer
+     * within the json file. If it does, it keeps track of correct answers and prints correct.
+     * If not incorrect is printed and nothing is added to the running total.
+     * @param numberOfQuestions number of questions provided by the user
+     * @param questions the arraylist of questions made by the QuestionReader class
+     * @return an int of questions correct. used in the QuizApp class to tell the
+     * user how many questions they got correct opposed to the number of questions they wanted.
+     */
     public int showQuestion(int numberOfQuestions, ArrayList<Question> questions) {
         Random rnd = new Random();
         Scanner sc = new Scanner(System.in);

@@ -12,6 +12,14 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class QuestionReader {
+    /**
+     * This function takes in a file name entered by the user
+     * and takes each part of the json file and stores it into an
+     * arraylist of objects
+     * @param fname file name entered by the user
+     * @return am arraylist of questions if the file was of correct format
+     * and the process was a success. If not, null is returned
+     */
     public ArrayList<Question> readFromJSON(String fname){
         ArrayList<Question> questions = new ArrayList<Question>();
         try{

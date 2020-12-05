@@ -5,6 +5,11 @@ import java.util.ArrayList;
  * @author Max Lewis
  */
 public class QuestionPrinter {
+    /**
+     * This simply prints only the question and answer for the arraylists of
+     * all questions
+     * @param questions array list of all the questions
+     */
     public static void printQuestions(ArrayList<Question> questions){
         for (Question question : questions){
             System.out.print(question.getQuestion() + " Answer: ");
