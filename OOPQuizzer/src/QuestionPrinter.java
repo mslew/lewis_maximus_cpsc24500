@@ -8,7 +8,7 @@ public class QuestionPrinter {
     public static void printQuestions(ArrayList<Question> questions){
         for (Question question : questions){
             System.out.print(question.getQuestion() + " Answer: ");
-            System.out.print(question.getAnswer() + "\n");
+            System.out.print(question.getAnswer() + "\n\n");
         }
     }
 }
