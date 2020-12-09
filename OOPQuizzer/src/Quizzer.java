@@ -51,7 +51,7 @@ public class Quizzer {
                 System.out.println("Correct!\n");
             }else {
                 System.out.println("Incorrect!");
-                System.out.printf("The answer is %s\n", rndQuestion.getAnswer());
+                System.out.printf("The answer is: %s\n", rndQuestion.getAnswer());
             }
         }
         return numberCorrect;
