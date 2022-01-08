@@ -1,1 +1,1 @@
-This is simply a repository for all the projects I did in CPSC24500, Object-Oriented Programming. 
+This is simply a repository for all the projects I did in CPSC 24500, Object-Oriented Programming. 
